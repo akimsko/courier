@@ -13,17 +13,19 @@ use Composer\Plugin\PluginInterface;
  * Class Plugin
  *
  * @package Courier
- * @author Bo Thinggaard <akimsko@gmail.com>
+ * @author  Bo Thinggaard <akimsko@gmail.com>
  */
-class Plugin implements PluginInterface {
+class Plugin implements PluginInterface
+{
 
-	/**
-	 * activate.
-	 *
-	 * @param Composer    $composer
-	 * @param IOInterface $io
-	 */
-	public function activate(Composer $composer, IOInterface $io) {
-		$composer->getInstallationManager()->addInstaller(new Installer($io, $composer));
-	}
+    /**
+     * activate.
+     *
+     * @param Composer    $composer
+     * @param IOInterface $io
+     */
+    public function activate(Composer $composer, IOInterface $io)
+    {
+        $composer->getInstallationManager()->addInstaller(new Installer($io, $composer));
+    }
 }

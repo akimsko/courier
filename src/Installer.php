@@ -16,60 +16,65 @@ use Composer\Util\Filesystem;
  *
  * @author Bo Thinggaard <akimsko@gmail.com>
  */
-class Installer extends LibraryInstaller {
+class Installer extends LibraryInstaller
+{
 
-	/** @var array */
-	protected $paths;
+    /** @var array */
+    protected $paths;
 
-	/**
-	 * @param IOInterface $io
-	 * @param Composer    $composer
-	 * @param string      $type
-	 * @param Filesystem  $filesystem
-	 */
-	public function __construct(IOInterface $io, Composer $composer, $type = 'library', Filesystem $filesystem = null) {
-		parent::__construct($io, $composer, $type, $filesystem);
+    /**
+     * @param IOInterface $io
+     * @param Composer    $composer
+     * @param string      $type
+     * @param Filesystem  $filesystem
+     */
+    public function __construct(IOInterface $io, Composer $composer, $type = 'library', Filesystem $filesystem = null)
+    {
+        parent::__construct($io, $composer, $type, $filesystem);
 
-		if ($extra = $this->composer->getPackage()->getExtra()) {
-			$this->paths = isset($extra['courier-paths'])
-				? $extra['courier-paths']
-				: array()
-			;
-		}
-	}
+        if ($extra = $this->composer->getPackage()->getExtra()) {
+            $this->paths = isset($extra['courier-paths'])
+                ? $extra['courier-paths']
+                : array();
+        }
+    }
 
-	/**
-	 * getPackageBasePath.
-	 *
-	 * @param PackageInterface $package
-	 *
-	 * @return string
-	 */
-	protected function getPackageBasePath(PackageInterface $package) {
-		if (isset($this->paths[$package->getType()]) && ($path = $this->paths[$package->getType()])) {
-			@list($vendor, $name) = explode('/', $package->getPrettyName());
-			$path = strtr($path, array(
-				'{vendor}' => $vendor,
-				'{name}'   => $name
-			));
-			return rtrim($path, '/');
-		}
+    /**
+     * getPackageBasePath.
+     *
+     * @param PackageInterface $package
+     *
+     * @return string
+     */
+    protected function getPackageBasePath(PackageInterface $package)
+    {
+        if (isset($this->paths[$package->getType()]) && ($path = $this->paths[$package->getType()])) {
+            @list($vendor, $name) = explode('/', $package->getPrettyName());
 
-		if (($extra = $package->getExtra()) && isset($extra['courier-path'])) {
-			return rtrim($extra['courier-path'], '/');
-		}
+            $path = strtr($path, array(
+                '{vendor}' => $vendor,
+                '{name}'   => $name
+            ));
 
-		return parent::getPackageBasePath($package);
-	}
+            return rtrim($path, '/');
+        }
 
-	/**
-	 * supports.
-	 *
-	 * @param string $packageType
-	 *
-	 * @return bool
-	 */
-	public function supports($packageType) {
-		return true;
-	}
+        if (($extra = $package->getExtra()) && isset($extra['courier-path'])) {
+            return rtrim($extra['courier-path'], '/');
+        }
+
+        return parent::getPackageBasePath($package);
+    }
+
+    /**
+     * supports.
+     *
+     * @param string $packageType
+     *
+     * @return bool
+     */
+    public function supports($packageType)
+    {
+        return true;
+    }
 }
