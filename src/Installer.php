@@ -14,7 +14,7 @@ use Composer\Util\Filesystem;
 /**
  * Class Installer
  *
- * @author Bo Thinggaard <both@fynskemedier.dk>
+ * @author Bo Thinggaard <akimsko@gmail.com>
  */
 class Installer extends LibraryInstaller {
 
@@ -46,9 +46,9 @@ class Installer extends LibraryInstaller {
 	 * @return string
 	 */
 	protected function getPackageBasePath(PackageInterface $package) {
-		if (isset($this->paths[$package->getType()]) && ($dir = $this->paths[$package->getType()])) {
+		if (isset($this->paths[$package->getType()]) && ($path = $this->paths[$package->getType()])) {
 			@list($vendor, $name) = explode('/', $package->getPrettyName());
-			$path = strtr($dir, array(
+			$path = strtr($path, array(
 				'{vendor}' => $vendor,
 				'{name}'   => $name
 			));
