@@ -44,6 +44,11 @@ Like so...
 }
 ```
 
-This will install all packages of type ```my-custom-module-type``` to ```<projectroot>/modules/<vendor-name>-<package-name>```, all packages of type ```my-custom-theme-type``` to ```<projectroot>/themes/<package-name>```, and finally all packages of type ```library``` to ```<projectroot>/lib/<vendor-name>/<package-name>```.
+This will install all packages of type ```my-custom-module-type``` to ```<projectroot>/modules/<vendor-name>-<package-name>```.
+
+All packages of type ```my-custom-theme-type``` to ```<projectroot>/themes/<package-name>```.
+
+And finally all packages of type ```library``` to ```<projectroot>/lib/<vendor-name>/<package-name>```.
+
 
 If a package-type does not match anything in courier-paths extra section, it will be installed to the default vendor path as normal.
