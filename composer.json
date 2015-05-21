@@ -1,0 +1,21 @@
+{
+	"name": "akimsko/courier",
+	"type": "composer-plugin",
+	"description": "Install composer packages to custom folders",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Bo Thinggaard",
+			"email": "akimsko@gmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {"Courier\\": "src/"}
+	},
+	"require": {
+		"composer-plugin-api": "1.0.0"
+	},
+	"extra": {
+		"class": "Courier\\Plugin"
+	}
+}
