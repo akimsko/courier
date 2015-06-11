@@ -13,7 +13,7 @@
 		"psr-4": {"Courier\\": "src/"}
 	},
 	"require": {
-		"composer-plugin-api": "1.0.0"
+		"composer-plugin-api": "~1.0"
 	},
 	"extra": {
 		"class": "Courier\\Plugin"
