@@ -63,7 +63,20 @@ class Installer extends LibraryInstaller
             return rtrim($extra['courier-path'], '/');
         }
 
-        return parent::getPackageBasePath($package);
+        return ($this->vendorDir ? $this->vendorDir.'/' : '') . $package->getPrettyName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInstallPath(PackageInterface $package)
+    {
+        $this->initializeVendorDir();
+
+        $basePath = $this->getPackageBasePath($package);
+        $targetDir = $package->getTargetDir();
+
+        return $basePath . ($targetDir ? '/'.$targetDir : '');
     }
 
     /**
